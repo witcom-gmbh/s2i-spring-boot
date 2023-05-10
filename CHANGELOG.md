@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v1.0.1 - 2023-05-10
+#### Miscellaneous Chores
+- Fix incomplete docker-repo in pipeline - (508bbfd) - iceman91176
+
+- - -
+
 ## v1.0.0 - 2023-05-10
 #### Continuous Integration
 - Add release pipeline - (20ebe41) - iceman91176
