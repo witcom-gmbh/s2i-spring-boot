@@ -1,6 +1,6 @@
 global-variables:
   basesettings: &basesettings
-    repo: springboot-java
+    repo: artifactory.witcom.services/witcom-s2i/springboot-java
     registry: artifactory.witcom.services
     dockerfile: base/alpine/Dockerfile
     context: ./base/alpine
