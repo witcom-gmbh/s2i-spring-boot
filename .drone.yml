@@ -1,5 +1,5 @@
 global-variables:
-  base-settings: &base-settings
+  basesettings: &basesettings
     repo: springboot-java
     registry: artifactory.witcom.services
     dockerfile: base/alpine/Dockerfile
@@ -24,60 +24,56 @@ steps:
 - name: docker build adoptopenjdk/openjdk8:alpine
   image: plugins/docker
   settings:
-    <<: *base-settings
+    <<: *basesettings
     <<: *jdk8
     dry_run: true
     tags:
       - latest
-- name: docker build adoptopenjdk/openjdk11:alpine
+  when:
+    event:
+      exclude:
+      - tag
+
+- name: docker build and publish adoptopenjdk/openjdk8:alpine
   image: plugins/docker
   settings:
-    <<: *base-settings
-    <<: *jdk11
-    dry_run: true
-    tags:
-      - latest
-
-trigger:
-  event:
-    include:
-    - push
-    - pull_request
-    exclude:
-    - tag
-
----
-
-kind: pipeline
-type: docker
-name: Build and publish S2I spring-boot images
-
-steps:
-- name: docker build adoptopenjdk/openjdk8:alpine
-  image: plugins/docker
-  settings:
-    <<: *base-settings
+    <<: *basesettings
     <<: *jdk8
     tags:
       - jdk8
       - jdk8-${DRONE_TAG}
       - jdk8-alpine-${DRONE_TAG}
+  when:
+    event:
+    - tag
+    ref:
+    - refs/tags/v*
+
 - name: docker build adoptopenjdk/openjdk11:alpine
   image: plugins/docker
   settings:
-    <<: *base-settings
+    <<: *basesettings
+    <<: *jdk11
+    dry_run: true
+    tags:
+      - latest
+  when:
+    event:
+      exclude:
+      - tag
+
+- name: docker build and publish adoptopenjdk/openjdk11:alpine
+  image: plugins/docker
+  settings:
+    <<: *basesettings
     <<: *jdk11
     tags:
       - jdk11
       - jdk11-${DRONE_TAG}
       - jdk11-alpine-${DRONE_TAG}
+  when:
+    event:
+    - tag
+    ref:
+    - refs/tags/v*
 
-trigger:
-  event:
-  - tag
-  ref:
-  - refs/tags/v*
-
-#  when:
-#    branch:
-#    - main
