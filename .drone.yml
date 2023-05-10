@@ -1,0 +1,27 @@
+kind: pipeline
+type: docker
+name: Build S2I spring-boot images
+
+steps:
+- name: docker build adoptopenjdk/openjdk8:alpine
+  image: plugins/docker
+  settings:
+#    repo: artifactory.witcom.services/drone-plugins/drone-s2i-builder
+#    registry: artifactory.witcom.services
+    dockerfile: base/alpine/Dockerfile
+    dry_run: true
+    build_args:
+      - BASE_IMAGE=adoptopenjdk/openjdk8:alpine
+- name: docker build adoptopenjdk/openjdk11:alpine
+  image: plugins/docker
+  settings:
+#    repo: artifactory.witcom.services/drone-plugins/drone-s2i-builder
+#    registry: artifactory.witcom.services
+    dockerfile: base/alpine/Dockerfile
+    dry_run: true
+    build_args:
+      - BASE_IMAGE=adoptopenjdk/openjdk11:alpine
+
+#  when:
+#    branch:
+#    - main
