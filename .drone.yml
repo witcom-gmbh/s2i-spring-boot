@@ -6,7 +6,7 @@ steps:
 - name: docker build adoptopenjdk/openjdk8:alpine
   image: plugins/docker
   settings:
-#    repo: artifactory.witcom.services/drone-plugins/drone-s2i-builder
+    repo: springboot-java:jdk8
 #    registry: artifactory.witcom.services
     dockerfile: base/alpine/Dockerfile
     context: ./base/alpine
@@ -16,7 +16,7 @@ steps:
 - name: docker build adoptopenjdk/openjdk11:alpine
   image: plugins/docker
   settings:
-#    repo: artifactory.witcom.services/drone-plugins/drone-s2i-builder
+    repo: springboot-java:jdk11
 #    registry: artifactory.witcom.services
     dockerfile: base/alpine/Dockerfile
     context: ./base/alpine
