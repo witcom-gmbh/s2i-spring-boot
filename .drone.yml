@@ -18,7 +18,7 @@ steps:
 - name: docker build adoptopenjdk/openjdk11:alpine
   image: plugins/docker
   settings:
-    repo: springboot-java:jdk11
+    repo: springboot-java
 #    registry: artifactory.witcom.services
     dockerfile: base/alpine/Dockerfile
     context: ./base/alpine
