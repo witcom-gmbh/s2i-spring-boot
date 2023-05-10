@@ -37,8 +37,12 @@ steps:
     dry_run: true
     tags:
       - latest
+
 trigger:
   event:
+    include:
+    - push
+    - pull_request
     exclude:
     - tag
 
@@ -65,6 +69,7 @@ steps:
       - jdk11
       - jdk11-${DRONE_TAG}
       - jdk11-alpine-${DRONE_TAG}
+
 trigger:
   event:
   - tag
