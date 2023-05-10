@@ -6,11 +6,13 @@ steps:
 - name: docker build adoptopenjdk/openjdk8:alpine
   image: plugins/docker
   settings:
-    repo: springboot-java:jdk8
+    repo: springboot-java
 #    registry: artifactory.witcom.services
     dockerfile: base/alpine/Dockerfile
     context: ./base/alpine
     dry_run: true
+    tags:
+      - jdk8
     build_args:
       - BASE_IMAGE=adoptopenjdk/openjdk8:alpine
 - name: docker build adoptopenjdk/openjdk11:alpine
@@ -21,6 +23,8 @@ steps:
     dockerfile: base/alpine/Dockerfile
     context: ./base/alpine
     dry_run: true
+    tags:
+      - jdk11
     build_args:
       - BASE_IMAGE=adoptopenjdk/openjdk11:alpine
 
