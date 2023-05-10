@@ -8,7 +8,8 @@ steps:
   settings:
 #    repo: artifactory.witcom.services/drone-plugins/drone-s2i-builder
 #    registry: artifactory.witcom.services
-    dockerfile: base/alpine/Dockerfile
+#    dockerfile: base/alpine/Dockerfile
+    context: ./base/alpine
     dry_run: true
     build_args:
       - BASE_IMAGE=adoptopenjdk/openjdk8:alpine
@@ -17,7 +18,8 @@ steps:
   settings:
 #    repo: artifactory.witcom.services/drone-plugins/drone-s2i-builder
 #    registry: artifactory.witcom.services
-    dockerfile: base/alpine/Dockerfile
+#    dockerfile: base/alpine/Dockerfile
+    context: ./base/alpine
     dry_run: true
     build_args:
       - BASE_IMAGE=adoptopenjdk/openjdk11:alpine
